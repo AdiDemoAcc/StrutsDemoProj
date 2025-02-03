@@ -16,10 +16,10 @@
 <title>Read User List Page</title>
 </head>
 <body>
-	<div class="container custom-user-reader-container">
+	<div class="container custom-user-reader-container mt-5">
 		<div class="card custom-user-reader-card">
 			<div class="card-header text-center">
-				<h1>Active Users List</h1>
+				<h2>Active Users List</h2>
 			</div>
 			<div class="card-body custom-user-reader-card-body">
 				<s:if test="hasActionErrors()">
@@ -36,7 +36,7 @@
 							<th>Actions</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody class="custom-user-reader-user-list-table-body">
 						<s:iterator value="userList" var="user">
 							<tr>
 								<td><s:property value="#user.userId" /></td>

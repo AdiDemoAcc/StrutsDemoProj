@@ -4,3 +4,9 @@
 	align-content: center;
 	font-weight: bold;
 }
+
+.table.custom-user-reader-user-list-table-body {
+	height: 60vh;
+	overflow-y: auto;
+	overflow-x: hidden;  
+}

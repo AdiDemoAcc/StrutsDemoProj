@@ -34,11 +34,17 @@ public class BUILDING_MST implements Serializable{
 	@Column(name = "maker_date")
 	private Date makerDate;
 	
+	@Column(name = "maker_rmrks")
+	private String makerRmrks;
+	
 	@Column(name = "author_id")
 	private Integer authorId;
 	
 	@Column(name = "author_date")
 	private Date authorDate;
+	
+	@Column(name = "author_rmrks")
+	private String authorRmrks;
 	
 	@Column(name = "is_active")
 	private boolean isActive;
@@ -48,7 +54,8 @@ public class BUILDING_MST implements Serializable{
 	}
 
 	public BUILDING_MST(Integer bldngId, String bldngName, String bldngBlock, Integer noOfApartments, Integer makerId,
-			Date makerDate, Integer authorId, Date authorDate, boolean isActive) {
+			Date makerDate, String makerRmrks, Integer authorId, Date authorDate, String authorRmrks,
+			boolean isActive) {
 		super();
 		this.bldngId = bldngId;
 		this.bldngName = bldngName;
@@ -56,8 +63,10 @@ public class BUILDING_MST implements Serializable{
 		this.noOfApartments = noOfApartments;
 		this.makerId = makerId;
 		this.makerDate = makerDate;
+		this.makerRmrks = makerRmrks;
 		this.authorId = authorId;
 		this.authorDate = authorDate;
+		this.authorRmrks = authorRmrks;
 		this.isActive = isActive;
 	}
 
@@ -139,8 +148,22 @@ public class BUILDING_MST implements Serializable{
 				+ ", noOfApartments=" + noOfApartments + ", makerId=" + makerId + ", makerDate=" + makerDate
 				+ ", authorId=" + authorId + ", authorDate=" + authorDate + ", isActive=" + isActive + "]";
 	}
-	
-	
+
+	public String getMakerRmrks() {
+		return makerRmrks;
+	}
+
+	public void setMakerRmrks(String makerRmrks) {
+		this.makerRmrks = makerRmrks;
+	}
+
+	public String getAuthorRmrks() {
+		return authorRmrks;
+	}
+
+	public void setAuthorRmrks(String authorRmrks) {
+		this.authorRmrks = authorRmrks;
+	}
 	
 	
 }

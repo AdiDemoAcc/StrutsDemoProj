@@ -17,10 +17,16 @@
 <title>User Editor Page</title>
 </head>
 <body>
-	<div class="container custom-user-reader-container">
+	<%
+		String roleName = (String) session.getAttribute("roleName");
+		if(roleName.equals("ROLE_ADMIN") || roleName.equals("ROLE_MAKER")) 
+		{	
+	%>
+	<div class="container custom-user-reader-container mt-5">
 		<div class="card custom-user-reader-card">
+		
 			<div class="card-header text-center">
-				<h1>Active Users List</h1>
+				<h1>User Updater Page</h1>
 			</div>
 			<div class="card-body custom-user-reader-card-body">
 				<s:if test="hasActionErrors()">
@@ -65,7 +71,7 @@
   		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     		<div class="modal-content">
       			<div class="modal-header">
-        			<h5 class="modal-title custom-user-reader-modal-title" id="viewUserDetailStaticModalLabel"></h5>
+        			<h5 class="modal-title custom-user-reader-modal-title" id="viewUserDetailStaticModalLabel">Update User Details</h5>
         			<%-- <span id="viewUserDetailStaticModalLabelDate" class="ms-auto"></span> --%>
         			<button type="button" class="close" onclick="closeModal()" aria-label="Close">
           				<span aria-hidden="true">&times;</span>
@@ -122,5 +128,12 @@
     		</div>
   		</div>
 	</div>
+	<%
+		} else {
+	%>
+		<div class="alert alert-danger" role="alert">User is not authorized to access this page!</div>
+	<%
+		}
+	%>
 </body>
 </html>
