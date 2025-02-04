@@ -46,6 +46,9 @@ public class BUILDING_MST implements Serializable{
 	@Column(name = "author_rmrks")
 	private String authorRmrks;
 	
+	@Column(name = "auth_status")
+	private Integer authStatus;
+	
 	@Column(name = "is_active")
 	private boolean isActive;
 	
@@ -55,7 +58,7 @@ public class BUILDING_MST implements Serializable{
 
 	public BUILDING_MST(Integer bldngId, String bldngName, String bldngBlock, Integer noOfApartments, Integer makerId,
 			Date makerDate, String makerRmrks, Integer authorId, Date authorDate, String authorRmrks,
-			boolean isActive) {
+			boolean isActive,Integer authStatus) {
 		super();
 		this.bldngId = bldngId;
 		this.bldngName = bldngName;
@@ -68,6 +71,7 @@ public class BUILDING_MST implements Serializable{
 		this.authorDate = authorDate;
 		this.authorRmrks = authorRmrks;
 		this.isActive = isActive;
+		this.authStatus = authStatus;
 	}
 
 	public Integer getBldngId() {
@@ -142,11 +146,12 @@ public class BUILDING_MST implements Serializable{
 		this.isActive = isActive;
 	}
 
-	@Override
-	public String toString() {
-		return "BUILDING_MST [bldngId=" + bldngId + ", bldngName=" + bldngName + ", bldngBlock=" + bldngBlock
-				+ ", noOfApartments=" + noOfApartments + ", makerId=" + makerId + ", makerDate=" + makerDate
-				+ ", authorId=" + authorId + ", authorDate=" + authorDate + ", isActive=" + isActive + "]";
+	public Integer getAuthStatus() {
+		return authStatus;
+	}
+
+	public void setAuthStatus(Integer authStatus) {
+		this.authStatus = authStatus;
 	}
 
 	public String getMakerRmrks() {
@@ -164,6 +169,34 @@ public class BUILDING_MST implements Serializable{
 	public void setAuthorRmrks(String authorRmrks) {
 		this.authorRmrks = authorRmrks;
 	}
+
+	@Override
+	public String toString() {
+		return "BUILDING_MST [bldngId=" + bldngId + ", bldngName=" + bldngName + ", bldngBlock=" + bldngBlock
+				+ ", noOfApartments=" + noOfApartments + ", makerId=" + makerId + ", makerDate=" + makerDate
+				+ ", makerRmrks=" + makerRmrks + ", authorId=" + authorId + ", authorDate=" + authorDate
+				+ ", authorRmrks=" + authorRmrks + ", authStatus=" + authStatus + ", isActive=" + isActive + "]";
+	}
 	
+	public String bldngJSON() {
+		return "{"
+			 + "\"bldngId\":\"" + bldngId + "\","
+			 + "\"bldngName\":\"" + escapeJSON(bldngName) + "\","
+			 + "\"bldngBlock\":\"" + escapeJSON(bldngBlock) + "\","
+			 + "\"noOfApartments\":\"" + noOfApartments + "\","
+			 + "\"makerId\":\"" + makerId + "\","
+			 + "\"makerDt\":\"" + makerDate + "\","
+			 + "\"makerRmrks\":\"" + escapeJSON(makerRmrks) + "\","
+			 + "\"authorId\":\"" + authorId + "\","
+			 + "\"authorDt\":\"" + authorDate + "\","
+			 + "\"authorRmrks\":\"" + escapeJSON(authorRmrks) +"\""
+			 + "}";
+	}
 	
+	public String escapeJSON(String str) {
+		if (str == null) {
+			return "";
+		}
+		return str.replace("\"","\\\"");
+	}
 }

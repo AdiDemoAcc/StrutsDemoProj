@@ -96,6 +96,10 @@
     			<param name="root">respObject</param>
     		</result>
     	</action>
+    	<action name="buildingReader" method="getBuildingList" class="com.apptrove.ledgerly.user.service.BldngService">
+    		<result name="success">/pages/BldngReader.jsp</result>
+    		<result name="error">/pages/BldngReader.jsp</result>
+    	</action>
     </package>
     <package name="userPackage" namespace="/user" extends="struts-default,json-default">
     	<action name="makerAction" method="makerAction" class="com.apptrove.ledgerly.user.action.UserAction">
@@ -138,5 +142,8 @@
     			<param name="root">respObject</param>
     		</result>
     	</action>
+    </package>
+    <package name="bldngPackage" namespace="/bldng" extends="struts-default,json-default">
+    	<action name="user"></action>
     </package>
 </struts>
