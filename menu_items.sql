@@ -56,3 +56,9 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2024-12-19 18:36:10
+
+RENAME TABLE com_ldgr_dbrd_menu_mst TO com_ldgr_admin_dbrd_menu_mst;
+
+RENAME TABLE com_ldgr_dbrd_menu_items_mst TO com_ldgr_admin_dbrd_menu_items_mst;
+
+

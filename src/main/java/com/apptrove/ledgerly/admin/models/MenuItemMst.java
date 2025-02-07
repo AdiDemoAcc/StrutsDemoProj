@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "com_ldgr_dbrd_menu_items_mst")
+@Table(name = "com_ldgr_admin_dbrd_menu_items_mst")
 public class MenuItemMst implements Serializable {
 
 	private static final long serialVersionUID = 3715113576170086062L;

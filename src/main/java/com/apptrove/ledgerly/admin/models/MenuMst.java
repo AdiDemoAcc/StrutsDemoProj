@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "com_ldgr_dbrd_menu_mst")
+@Table(name = "com_ldgr_admin_dbrd_menu_mst")
 public class MenuMst implements Serializable{
 
 	private static final long serialVersionUID = -6839914656022962178L;
