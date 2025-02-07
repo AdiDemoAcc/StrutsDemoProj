@@ -1,6 +1,5 @@
 package com.apptrove.ledgerly.admin.threads.scheduler;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -27,11 +26,11 @@ public class AccountUnlockerThreadService implements Runnable {
 	private ScheduledExecutorService accountUnlockerThread;
 
 	public void startScheduler() {
-		accountUnlockerThread = Executors.newScheduledThreadPool(1);
-		AccountUnlockerThreadService accountUnlockerThreadService = new AccountUnlockerThreadService(loginDaoImpl);
-		
-		
-		accountUnlockerThread.scheduleAtFixedRate(accountUnlockerThreadService, 0, 1, TimeUnit.HOURS);
+		if (accountUnlockerThread == null || accountUnlockerThread.isShutdown()) {
+			accountUnlockerThread = Executors.newScheduledThreadPool(1);
+			accountUnlockerThread.scheduleAtFixedRate(this, 0, 1, TimeUnit.HOURS);
+			logger.info("AccountUnlockerThread service started....");
+		}
 	}
 
 	public void stopScheduler() {
@@ -39,22 +38,27 @@ public class AccountUnlockerThreadService implements Runnable {
 			accountUnlockerThread.shutdown();
 			try {
 				if (!accountUnlockerThread.awaitTermination(60, TimeUnit.SECONDS)) {
+					logger.warn("Scheduler did not terminate in time, forcing shutdown...");
 					accountUnlockerThread.shutdownNow();
 															
 				}
 			} catch (InterruptedException e) {
+				logger.error("Scheduler shutdown interrupted, forcing shutdown...", e);
 				accountUnlockerThread.shutdownNow();
+				Thread.currentThread().interrupt();
 			}
+			logger.info("AccountUnlockerThreadService stopped.");
 		}
 	}
 
 	@Override
 	public void run() {
-		logger.info("Starting thread AccountUnlocker to start unlock service:::::::::::::::::::::::::::::::::::::::");
-		List<User> userList = new ArrayList<User>();
+		logger.info("Starting AccountUnlockerThread to check locked accounts...");
+		List<User> userList;
 		try {
 			userList = loginDaoImpl.getLockedAccounts();
-			logger.info("Found " + userList.size() + " locked account(s):::::::::::::::::::::::::::::::::::::::::");
+			logger.info("Found {} locked account(s).", userList.size());
+
 			for (User user : userList) {
 				Date now = new Date();
 				long timeDiff = now.getTime() - user.getLastLoginDate().getTime();
@@ -69,11 +73,11 @@ public class AccountUnlockerThreadService implements Runnable {
 						logger.error("Something went wrong. Try Again later.");
 					}
 				} else {
-					logger.info("Will unlock account with username: "+user.getUsername()+" in "+timeDiff/(1000*60)+" minutes");
+					logger.info("Account {} will be unlocked in {} minutes.", user.getUsername(), timeDiff / (1000 * 60));
 				}
 			}
 		} catch (Exception e) {
-			logger.error("An error occurred: " + e.getMessage());
+			 logger.error("An error occurred while unlocking accounts: ", e);
 			e.printStackTrace();
 		}
 

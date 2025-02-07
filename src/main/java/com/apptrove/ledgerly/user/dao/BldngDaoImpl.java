@@ -19,6 +19,10 @@ public class BldngDaoImpl implements BldngDao {
 
 	private static final Logger logger = LogManager.getLogger(BldngDaoImpl.class);
 	
+	public BldngDaoImpl() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	@Override
 	public List<BUILDING_MST> getAllBuildings() {
 		List<BUILDING_MST> bldngList = new ArrayList<BUILDING_MST>();

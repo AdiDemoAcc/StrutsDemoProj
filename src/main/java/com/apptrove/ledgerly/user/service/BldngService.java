@@ -16,13 +16,11 @@ public class BldngService {
 	
 	private static final Logger logger = LogManager.getLogger(BldngService.class);
 	
-	private final BldngDaoImpl bldngDaoImpl;
-	
-	public BldngService(BldngDaoImpl bldngDaoImpl) {
-		super();
-		this.bldngDaoImpl = bldngDaoImpl;
-	}
+	private BldngDaoImpl bldngDaoImpl = new BldngDaoImpl();
 
+	public BldngService() {
+		// TODO Auto-generated constructor stub
+	}
 
 
 	public Map<String, Object> getBldngList() {
