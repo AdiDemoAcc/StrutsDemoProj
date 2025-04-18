@@ -28,6 +28,7 @@ public class BldngService {
 		try (Session session = DatabaseUtils.getSessionFactory().openSession()){
 			logger.info("Inside getBldngList method:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
 			List<BUILDING_MST> bldngList = bldngDaoImpl.getAllBuildings();
+			logger.info("Found "+bldngList.size()+" number of buildings");
 			if (bldngList != null && !bldngList.isEmpty()) {
 				respObject.put("bldngList", bldngList);
 				respObject.put("message","success");

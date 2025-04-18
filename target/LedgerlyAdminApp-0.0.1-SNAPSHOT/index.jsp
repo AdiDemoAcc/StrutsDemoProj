@@ -109,7 +109,7 @@
 	</button> -->
 	
 	<!-- Modal -->
-	<div class="modal fade" id="loginPageModal" tabindex="-1" role="dialog" aria-labelledby="loginPageModalTitle" aria-hidden="true">
+	<div class="modal static fade"  data-backdrop="static" data-keyboard="false" id="loginPageModal" tabindex="-1" role="dialog" aria-labelledby="loginPageModalTitle" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 					<div class="modal-header">

@@ -272,6 +272,8 @@ $(document).ready(function() {
 				console.error(error);
 			}
 		});
+		
+		
 	});
 
 	const passwordInput = document.getElementById('password');
@@ -289,6 +291,8 @@ $(document).ready(function() {
 			passwordInput.classList.add('invalid');
 		}
 	});
+	
+	
 });
 
 /*document.addEventListener('DOMContentLoaded', function() {

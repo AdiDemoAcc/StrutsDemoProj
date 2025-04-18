@@ -227,6 +227,10 @@
                 }
 			});
 		});
+	   
+	   $('#cancelBtn').click(function () {
+		   window.history.back();
+	   })
 	});
 </script>
 
@@ -452,7 +456,7 @@
                         	</div>
                         	<div class="btn-grp text-center">
                         		<button class="btn btn-outline-success" id="registerFormSubmit" type="button" >Submit</button>
-								<button class="btn btn-outline-danger" type="reset">Cancel</button>
+								<button class="btn btn-outline-danger" type="reset" id="cancelBtn">Cancel</button>
                         	</div>
                         </div>
                         

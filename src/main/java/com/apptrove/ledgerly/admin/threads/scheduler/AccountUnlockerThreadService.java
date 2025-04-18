@@ -73,7 +73,7 @@ public class AccountUnlockerThreadService implements Runnable {
 						logger.error("Something went wrong. Try Again later.");
 					}
 				} else {
-					logger.info("Account {} will be unlocked in {} minutes.", user.getUsername(), timeDiff / (1000 * 60));
+					logger.info("Account {} will be unlocked in {} minutes.", user.getUsername(), (oneHourDiff - timeDiff) / (1000 * 60));
 				}
 			}
 		} catch (Exception e) {

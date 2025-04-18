@@ -191,7 +191,7 @@ public class UserAction extends ActionSupport {
 		HttpSession session = httpRequest.getSession();
 		try {
 			logger.info(
-					"Inside makerAction method:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
+					"Inside getAllActiveUsers method:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
 			String roleName = (String) session.getAttribute("roleName");
 			if (session.getAttribute("user") == null) {
 				addActionError("User Session Expired");

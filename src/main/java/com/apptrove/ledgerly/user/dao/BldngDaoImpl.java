@@ -30,6 +30,7 @@ public class BldngDaoImpl implements BldngDao {
 			logger.info("Inside getAllBuildings method::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
 			String hql = "FROM BUILDING_MST WHERE isActive=:isActive";
 			Query<BUILDING_MST> query = session.createQuery(hql,BUILDING_MST.class);
+			query.setParameter("isActive", true);
 			bldngList = query.getResultList();
 			logger.info("Found "+bldngList.size()+" of buildings::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
 			logger.info("Exiting getAllBuildings method::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");

@@ -1,10 +1,12 @@
 package com.apptrove.ledgerly.user.action;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.apptrove.ledgerly.admin.models.BUILDING_MST;
 import com.apptrove.ledgerly.user.service.BldngService;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -14,7 +16,9 @@ public class BuildingAction extends ActionSupport{
 
 	private final static Logger logger = LogManager.getLogger(BuildingAction.class);
 	
-	private final BldngService bldngService;
+	private BldngService bldngService = new BldngService();
+	
+	private List<BUILDING_MST> bldngList; 
 	
 	private Map<String, Object> respObject;
 
@@ -25,10 +29,13 @@ public class BuildingAction extends ActionSupport{
 	public void setRespObject(Map<String, Object> respObject) {
 		this.respObject = respObject;
 	}
-	
-	public BuildingAction(BldngService bldngService) {
-		super();
-		this.bldngService = bldngService;
+
+	public List<BUILDING_MST> getBldngList() {
+		return bldngList;
+	}
+
+	public void setBldngList(List<BUILDING_MST> bldngList) {
+		this.bldngList = bldngList;
 	}
 
 	public String getBuildingList() {
@@ -36,10 +43,12 @@ public class BuildingAction extends ActionSupport{
 			logger.info("Inside getBuildingList method:::::::::::::::::::::::::::::::::::::::::::::::::::");
 			respObject = bldngService.getBldngList();
 			if (respObject.containsKey("errorCd") && respObject.get("errorCd").equals("000")) {
+				bldngList = (List<BUILDING_MST>) respObject.get("bldngList");
+//				addActionError("Found Buildings");
 				logger.info("Exiting getBuildingList method:::::::::::::::::::::::::::::::::::::::::::::::::::");
 				return SUCCESS;
 			} else {
-				addActionError("Something went wrong!!!");
+				addActionError("No buildings found");
 				logger.info("Exiting getBuildingList method:::::::::::::::::::::::::::::::::::::::::::::::::::");
 				return ERROR;
 			}
@@ -53,6 +62,17 @@ public class BuildingAction extends ActionSupport{
 	
 	public String getBldngAuthList() {
 		return null;
+	}
+	
+	public String bldngMaker() {
+		try {
+			return SUCCESS;
+		} catch (Exception e) {
+			addActionError("Somthing went wrong.");
+			logger.error("An error occurred: {}",e.getMessage());
+			e.printStackTrace();
+			return ERROR;
+		}
 	}
 	
 }

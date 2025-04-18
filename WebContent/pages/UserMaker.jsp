@@ -132,13 +132,21 @@
                         	</div>
                         	<div class="btn-grp text-center">
                         		<button class="btn btn-outline-success" id="registerFormSubmit" type="submit" >Submit</button>
-								<button class="btn btn-outline-danger" type="reset">Cancel</button>
+								<button class="btn btn-outline-danger" type="reset" id="cancelBtn">Cancel</button>
                         	</div>
                         </div>
                         
                          <!-- End of Credential Information Tab -->
                         
-                        
+                        <script type="text/javascript">
+                        	$('#cancelBtn').click(function () {
+                        		var contextPath = window.location.pathname.split('/')[1];
+                        		console.log("Called cancel function");
+                    			/* window.history.back(); */
+                    			
+                    			window.location.href="/" + contextPath + '/dashboard'
+                    		});
+                        </script>
                         
                     </div>
                 </form>

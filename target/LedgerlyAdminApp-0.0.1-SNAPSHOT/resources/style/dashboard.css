@@ -144,3 +144,8 @@
 	 width: 100%; /* Adjust this value as needed */
     text-align: center;
 }
+
+.custom-dashboard-main-content {
+	max-height: 70vh;
+	overflow: auto;
+}
