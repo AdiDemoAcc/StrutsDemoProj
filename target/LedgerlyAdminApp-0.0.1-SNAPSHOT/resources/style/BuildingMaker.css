@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+.custom-building-maker-input-row {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+}
+
+.custom-building-maker-form-label {
+	align-items: end;
+	justify-content: flex-end;
+	display: flex;
+	margin-top: 0.8%;
+}

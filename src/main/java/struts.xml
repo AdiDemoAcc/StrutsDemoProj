@@ -148,6 +148,9 @@
     	</action>
     </package>
     <package name="bldngPackage" namespace="/bldng" extends="struts-default,json-default">
-    	<action name="user"></action>
+    	<action name="makerAction" method="bldngMaker" class="com.apptrove.ledgerly.user.action.BuildingAction">
+    		<result name="success">/pages/BldngReader.jsp</result>
+    		<result name="error">/pages/BldngReader.jsp</result>
+    	</action>
     </package>
 </struts>

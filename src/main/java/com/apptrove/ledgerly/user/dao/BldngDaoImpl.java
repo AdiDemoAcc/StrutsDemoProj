@@ -4,16 +4,22 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.struts2.ServletActionContext;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import com.apptrove.ledgerly.admin.models.BUILDING_MST;
+import com.apptrove.ledgerly.admin.models.User;
 import com.apptrove.ledgerly.admin.payload.BldngAuthorRequest;
 import com.apptrove.ledgerly.admin.payload.BldngMakerRequest;
 import com.apptrove.ledgerly.database.utils.DatabaseUtils;
+import com.opensymphony.xwork2.ActionContext;
 
 public class BldngDaoImpl implements BldngDao {
 
@@ -45,12 +51,18 @@ public class BldngDaoImpl implements BldngDao {
 	public boolean makerBldngMethod(BldngMakerRequest bldngMakerRequest) {
 		boolean flag = false;
 		BUILDING_MST bldngObj = new BUILDING_MST();
+		HttpServletRequest httpRequest = (HttpServletRequest) ActionContext.getContext()
+				.get(ServletActionContext.HTTP_REQUEST);
+		HttpSession httpSession = httpRequest.getSession();
 		try (Session session = DatabaseUtils.getSessionFactory().openSession()){
 			logger.info("Inside makerBldngMethod method:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
-			
+			User makerUser = (User) httpSession.getAttribute("user"); 
 			bldngObj.setBldngName(bldngMakerRequest.getBldngName());
 			bldngObj.setNoOfApartments(bldngMakerRequest.getNoOfApartments());
-			bldngObj.setMakerId(bldngMakerRequest.getMakerCd());
+			bldngObj.setNoOfFloors(bldngMakerRequest.getNoOfFloors());
+			bldngObj.setNoOfLifts(bldngMakerRequest.getNoOfLifts());
+			bldngObj.setReception(bldngMakerRequest.getReception());
+			bldngObj.setMakerId(makerUser.getUserId());
 			bldngObj.setMakerDate(new Date());
 			bldngObj.setMakerRmrks(bldngMakerRequest.getMakerRmrks());
 			

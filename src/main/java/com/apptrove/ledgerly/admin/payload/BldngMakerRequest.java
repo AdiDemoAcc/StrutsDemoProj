@@ -7,6 +7,9 @@ public class BldngMakerRequest {
 	private Integer bldngId;
 	private String bldngName;
 	private Integer noOfApartments;
+	private Integer noOfFloors;
+	private Integer noOfLifts;
+	private Integer reception;
 	private Integer makerCd;
 	private Date makerDate;
 	private String makerRmrks;
@@ -73,12 +76,47 @@ public class BldngMakerRequest {
 	public void setMakerRmrks(String makerRmrks) {
 		this.makerRmrks = makerRmrks;
 	}
+	
+	public Integer getNoOfFloors() {
+		return noOfFloors;
+	}
+
+	public void setNoOfFloors(Integer noOfFloors) {
+		this.noOfFloors = noOfFloors;
+	}
+
+	public Integer getNoOfLifts() {
+		return noOfLifts;
+	}
+
+	public void setNoOfLifts(Integer noOfLifts) {
+		this.noOfLifts = noOfLifts;
+	}
+
+	public Integer getReception() {
+		return reception;
+	}
+
+	public void setReception(Integer reception) {
+		this.reception = reception;
+	}
+
+	public Date getMakerDate() {
+		return makerDate;
+	}
+
+	public void setMakerDate(Date makerDate) {
+		this.makerDate = makerDate;
+	}
 
 	@Override
 	public String toString() {
-		return "BldngMakerObject [bldngId=" + bldngId + ", bldngName=" + bldngName + ", noOfApartments="
-				+ noOfApartments + ", makerCd=" + makerCd + ", makerDt=" + makerDate + ", makerRmrks=" + makerRmrks + "]";
+		return "BldngMakerRequest [bldngId=" + bldngId + ", bldngName=" + bldngName + ", noOfApartments="
+				+ noOfApartments + ", noOfFloors=" + noOfFloors + ", noOfLifts=" + noOfLifts + ", reception="
+				+ reception + ", makerCd=" + makerCd + ", makerDate=" + makerDate + ", makerRmrks=" + makerRmrks + "]";
 	}
+
+	
 	
 	
 }

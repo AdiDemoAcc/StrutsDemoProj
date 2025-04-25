@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 
 import com.apptrove.ledgerly.admin.models.BUILDING_MST;
+import com.apptrove.ledgerly.admin.payload.BldngMakerRequest;
 import com.apptrove.ledgerly.database.utils.DatabaseUtils;
 import com.apptrove.ledgerly.user.dao.BldngDaoImpl;
 
@@ -46,6 +47,18 @@ public class BldngService {
 			respObject.put("errorCd","-1");
 		}
 		return respObject;
+	}
+	
+	public boolean addNewBuilding(BldngMakerRequest building) {
+		boolean flag = false;
+		try {
+			flag = bldngDaoImpl.makerBldngMethod(building);
+		} catch (Exception e) {
+			flag = false;
+			logger.error("An error occurred: {}",e.getMessage());
+			e.printStackTrace();
+		}
+		return flag;
 	}
 
 }
